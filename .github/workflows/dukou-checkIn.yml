@@ -12,7 +12,9 @@ jobs:
   build:
     # 运行的Linux系统
     runs-on: ubuntu-latest
-
+  strategy:
+      matrix:
+        node-version: [16.x]
     steps:
       # 从仓库取出代码
       - uses: actions/checkout@v2
