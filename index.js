@@ -22,7 +22,7 @@ async function checkIn(){
 }
 
 (async () => {
-    console.log('开始');
+    console.log('开始 token:'), token;
     let result = await checkIn();
     console.log('result', result);
     console.log('结束');
