@@ -1,0 +1,30 @@
+# 这个工作流的名称
+name: dukou-checkIn
+
+on:
+  # 定期任务，用的是国际标准时间，0 18这个设定代表中国的凌晨2点
+  schedule:
+    - cron: '0 18 * * *'
+  # 是否允许在仓库面板手动触发工作流，允许。
+  workflow_dispatch:
+
+jobs:
+  build:
+    # 运行的Linux系统
+    runs-on: ubuntu-latest
+
+    steps:
+      # 从仓库取出代码
+      - uses: actions/checkout@v2
+      # 设置node环境
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.4.0
+      # 执行npm install安装依赖
+      - name: Install NPM dependencies
+        run: 
+          npm install axios
+      # 把我们的代码运行起来
+      - name: Run
+        run:
+          # 携带必要的参数运行，这里的MYTOKEN是解决github api请求频率问题的，POSTURL是爬取完成后发送数据的接口URL
+          node index.js TOKEN=${{secrets.TOKEN}}
