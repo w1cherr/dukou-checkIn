@@ -29,4 +29,4 @@ jobs:
       - name: Run
         run:
           # 携带必要的参数运行，这里的MYTOKEN是解决github api请求频率问题的，POSTURL是爬取完成后发送数据的接口URL
-          node index.js ${{ secrets.TOKEN }}
+          node index.js ${{ secrets.EMAIL }} ${{ secrets.PASSWD }}
